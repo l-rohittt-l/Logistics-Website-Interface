@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delhivery</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <style>
+        #navbar-icon {
+            width: 160px;
+            height: 27px;
+        }
+        .navbar-toggler {
+            border-color: #FFFFFF; /* Changes the color of the button border */
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Sets the icon color to white */
+        }
+        .navbar {
+            background-color: #101218;
+            height: 60px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000; /* Ensures the navbar stays above other content */
+        }
+        .nav-item {
+            padding: 5px;
+            color: white;
+        }
+        .nav-link {
+            color: white;
+        }
+        .dropdown-toggle {
+            background-color: white;
+            color: #101218;
+            border-radius: 3px;
+        }
+        .scrolling-text-container {
+            position: fixed;
+            top: 60px; /* Positioned right below the navbar */
+            overflow: hidden;
+            width: 100%;
+            height: 50px;
+            background-color: #fee2e2;
+            white-space: nowrap;
+            padding: 10px 0;
+            border-bottom: 3px solid #ef4444;
+            z-index: 900; /* Ensures it is just below the navbar */
+        }
+        .scrolling-text {
+            display: inline-block;
+            position: absolute;
+            left: 100%;
+            animation: scroll-left 20s linear infinite;
+            white-space: nowrap;
+            line-height: 30px;
+        }
+        .dot {
+            display: inline-block;
+            height: 10px;
+            width: 10px;
+            background-color: #ef4444;
+            margin: 0 10px;
+        }
+        @keyframes scroll-left {
+            0% {
+                left: 100%;
+            }
+            100% {
+                left: -100%;
+            }
+        }
+        body {
+            margin-top: 120px; /* Height of navbar + scrolling text container */
+        }
+        .icon-img {
+            height: 18px;
+            width: 24px;
+            padding-right: 6px;
+        }
+        .dropdown-item:hover {
+            background-color: #e0e3ea;
+        }     
+        .image-container {
+            position: relative; /* To position elements on top of the image */
+            margin: 30px; /* Margin around the div */
+            overflow: hidden; /* Prevents overflow */
+        }
+        .image-container::before {
+            content: '';
+            position: absolute; /* Positioning relative to the container */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+            z-index: 1; /* Ensure the gradient is above the image */
+        }
+        .image-container img {
+            width: 100%; /* Image takes full width of the container */
+            max-height: 570px; /* Set a maximum height */
+            object-fit: cover; /* Ensures the image covers the area */
+            display: block; /* Prevents extra space below the image */
+            z-index: 0; /* Ensure the image is below the gradient */
+        }
+        .text-overlay {
+            position: absolute; /* Position on top of the image */
+            top: 50%; /* Adjusts vertical position */
+            left: 13%; /* Adjusts horizontal position */
+            color: white; /* Text color */
+            z-index: 2; /* Ensure the text is above the gradient */
+            width: 650px; /* Max width for the text container */
+            background-color: transparent;
+        }
+        .text-overlay-2 {
+            position: absolute;
+            top: 50%;
+            right: 13%;
+            z-index: 2;
+            width: 350px;
+            background-color: transparent;
+        }
+        .icon-adjust {
+            height: 48px;
+            width: 48px;
+        }
+        .statistics-container {
+            display: flex;               /* Use Flexbox */
+            flex-wrap: wrap;            /* Allow wrapping to the next line */
+            justify-content: space-between; /* Space out the blocks */
+            margin: 20px;              /* Margin around the container */
+        }
+        .statistics-block {
+            display: flex;              /* Use Flexbox for each block */
+            flex-direction: column;     /* Arrange items in a column */
+            align-items: center;        /* Center the items horizontally */
+            margin: 10px;              /* Margin between blocks */
+            text-align: center;         /* Center text in each block */
+            flex: 1 0 150px;            /* Allow blocks to grow/shrink, with a base width */
+            max-width: 200px;           /* Optional: max width for blocks */
+        }
+
+        .bookmark {
+            position: absolute;
+            z-index: 2;
+            display: inline-block;
+            height: 50px;
+            width: 50px;
+            background-color: #ef4444;
+            margin-left: 200px;
+            margin-top: -60px;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            .text-overlay {
+                left: 5%;
+                width: 90%;
+            }
+            .text-overlay-2 {
+                right: 5%;
+                width: 90%;
+            }
+            .bookmark {
+                margin-left: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            #navbar-icon {
+                width: 120px;
+                height: 20px;
+            }
+            .navbar {
+                height: auto; /* Allow navbar to expand */
+            }
+            .scrolling-text-container {
+                height: 40px;
+            }
+            .statistics-container {
+                flex-direction: column; /* Stack blocks vertically */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="../images/Delhivery Icon.png" alt="Delhivery App Icon" id="navbar-icon" style="margin-left: 170px; margin-right: 210px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Service
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><img class="icon-img" src="../images/express-delivery.png">Express Parcel</a></li>
+                            <li><a class="dropdown-item" href="#"><img class="icon-img" src="../images/warehouse.png">Warehousing</a></li>
+                            <li><a class="dropdown-item" href="#"><img src="../images/Part Truckload.png" alt="" class="icon-img"> Part Truckload</a></li>
+                            <li><a class="dropdown-item" href="#"><img src="../images/Full Truckload.png" alt="" class="icon-img"> Full Truckload</a></li>
+                            <li><a class="dropdown-item" href="#"><img src="../images/cross-border.png" alt="" class="icon-img">Cross Border</a></li>
+                            <li><a class="dropdown-item" href="#"><img src="../images/data intelligence.png" alt="" class="icon-img">Data Intelligence</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Solution
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><img class="icon-img" src="../images/d2c.png">D2C Brands</a></li>
+                            <li><a class="dropdown-item" href="#"><img src="../images/e-commerce.png" alt="" class="icon-img">E-commerce</a></li>
+                            <li><a class="dropdown-item" href="#"><img src="../images/retail.png" alt="" class="icon-img">Retail</a></li>
+                            <li><a class="dropdown-item" href="#"><img src="../images/consumer goods.png" alt="" class="icon-img">Consumer Goods</a></li>
+                            <li><a class="dropdown-item" href="#"><img src="../images/enterprise.png" alt="" class="icon-img">Enterprise</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Resources
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">FAQs</a></li>
+                            <li><a class="dropdown-item" href="#">Blogs</a></li>
+                            <li><a class="dropdown-item" href="#">Our Insights</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-outline-success" type="submit">Login</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="scrolling-text-container">
+        <div class="scrolling-text">
+            Welcome to Delhivery! Delivering happiness across India. <span class="dot"></span>
+            Explore our services and solutions for a seamless logistics experience!
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img src="../images/banner.jpg" alt="Delhivery Banner">
+        <div class="text-overlay">
+            <h1>DELHIVERY</h1>
+            <p>Your Logistics Partner</p>
+        </div>
+        <div class="text-overlay-2">
+            <h1>Experience Unmatched Delivery Services</h1>
+            <p>Join us and elevate your business logistics!</p>
+        </div>
+    </div>
+
+    <div class="statistics-container">
+        <div class="statistics-block">
+            <h2>150K</h2>
+            <p>Happy Clients</p>
+        </div>
+        <div class="statistics-block">
+            <h2>200+</h2>
+            <p>Locations</p>
+        </div>
+        <div class="statistics-block">
+            <h2>3000+</h2>
+            <p>Trained Professionals</p>
+        </div>
+        <div class="statistics-block">
+            <h2>95%</h2>
+            <p>Delivery Success Rate</p>
+        </div>
+    </div>
+    
+    <div class="bookmark"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

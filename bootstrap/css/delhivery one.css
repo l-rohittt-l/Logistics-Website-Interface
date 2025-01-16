@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.account-container {
+    width: 400px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin: auto;
+}
+
+.form-line {
+    margin-bottom: 15px;
+}
+
+.account-title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.account-label {
+    display: block;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.account-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.phone-container {
+    display: flex;
+    align-items: center;
+}
+
+.country-code {
+    width: 50px;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    background-color: #f0f0f0;
+    box-sizing: border-box;
+}
+
+.separator {
+    padding: 0 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.phone-number {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    box-sizing: border-box;
+}
+
+.password-input {
+    width: 100%; 
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.create-account-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.create-account-button:hover {
+    background-color: #0056b3; 
+}
+
+.login-prompt {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin: 10px 0 0 0;
+}
+
+.login-link {
+    color: #007bff;
+    text-decoration: none; 
+}
+
+.login-link:hover {
+    text-decoration: underline; 
+}
+.unique-logo-container {
+    position: relative;
+    white-space: nowrap;  
+    overflow: hidden;  
+    width: 100%;  
+}
+
+.unique-logo-wrapper {
+    display: inline-block;  
+    animation: unique-scroll 10s linear infinite;  
+}
+
+.unique-logo-wrapper img {
+    height: 50px;  
+    margin: 0 10px;  
+}
+
+@keyframes unique-scroll {
+    0% {
+        transform: translateX(100%);  
+    }
+    100% {
+        transform: translateX(-100%); 
+    }
+}
